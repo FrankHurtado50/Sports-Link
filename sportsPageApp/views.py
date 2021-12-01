@@ -52,3 +52,34 @@ def dashboard(request):
         # add more context
     }
     return render(request, "dashboard.html", context)
+
+
+def logout(request):
+    del request.session['user_id']
+
+    return redirect("/")
+
+
+def new_sport(request):
+    context = {
+        "logged_in_user": User.objects.get(id = request.session['user_id'])
+    }
+    return render(request, "creating_sports.html", context)
+
+
+def create_sport(request):
+    errors = Sport.objects.sport_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect("/sports/new")
+    else:
+        this_sport = User.objects.get(id = request.session['user_id'])
+        Sport.objects.create(
+            destination = request.POST['sport_name'],
+            start = request.POST['city'],
+            end = request.POST['day_of_week'],
+            plan = request.POST['time'],
+            creator = this_sport
+        )
+        return redirect("/dashboard")

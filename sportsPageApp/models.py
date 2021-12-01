@@ -34,6 +34,22 @@ class UserManager(models.Manager):
         return errors
 
 
+class SportManager(models.Manager):
+
+    def Sport_validator(self, post_data):
+        errors = {}
+        if len(post_data['sport_name']) < 3:
+            errors['sport_name'] = "Sport must have at least 3 charaters."
+        if len(post_data['city']) < 3:
+            errors['city'] = "City must have at least 3 charaters."
+        if len(post_data['day_of_week']) < 1:
+            errors['day_of_week'] = "Must have Day of Week!"
+        if len(post_data['time']) < 1:
+            errors['time'] = "Must have a Time!"
+
+        return errors
+
+
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -48,6 +64,7 @@ class Sport(models.Model):
     city = models.CharField(max_length=255)
     day_of_week = models.CharField(max_length=255)
     time = models.CharField(max_length=255)
+    objects = SportManager()
 
 
 # Create your models here.
