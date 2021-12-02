@@ -76,10 +76,10 @@ def create_sport(request):
     else:
         this_sport = User.objects.get(id = request.session['user_id'])
         Sport.objects.create(
-            destination = request.POST['sport_name'],
-            start = request.POST['city'],
-            end = request.POST['day_of_week'],
-            plan = request.POST['time'],
+            sport_name = request.POST['sport_name'],
+            city = request.POST['city'],
+            day_of_week = request.POST['day_of_week'],
+            time = request.POST['time'],
             creator = this_sport
         )
         return redirect("/dashboard")

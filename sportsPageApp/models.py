@@ -36,7 +36,7 @@ class UserManager(models.Manager):
 
 class SportManager(models.Manager):
 
-    def Sport_validator(self, post_data):
+    def sport_validator(self, post_data):
         errors = {}
         if len(post_data['sport_name']) < 3:
             errors['sport_name'] = "Sport must have at least 3 charaters."
@@ -64,6 +64,9 @@ class Sport(models.Model):
     city = models.CharField(max_length=255)
     day_of_week = models.CharField(max_length=255)
     time = models.CharField(max_length=255)
+    creator = models.ForeignKey(User, related_name="sports", on_delete=models.CASCADE)
+    create_at = models.DateTimeField(auto_now_add = True)
+    update_at = models.DateTimeField(auto_now = True)
     objects = SportManager()
 
 
