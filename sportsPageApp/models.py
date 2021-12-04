@@ -70,4 +70,5 @@ class Sport(models.Model):
     objects = SportManager()
 
 
+
 # Create your models here.
