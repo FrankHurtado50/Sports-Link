@@ -7,6 +7,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>dashboard Page</h1>
+    <h1>Hello {{ logged_in_user.first_name }}!</h1>
+    <a href="/logout">Logout </a> |
+    <!-- <p>.</p> -->
+    <a href="/sports/new">Create a new sport!</a>
+    <p>Your Sports:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Sport</th>
+                <th>City</th>
+                <th>Day of week</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sport in logged_in_user.sports.all %}
+            <tr>
+                <td>{{ sport.sport_name }}</td>
+                <td>{{ sport.city }}</td>
+                <td>{{ sport.day_of_week }}</td>
+                <td>{{ sport.time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
