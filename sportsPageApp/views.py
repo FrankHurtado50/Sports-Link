@@ -83,3 +83,9 @@ def create_sport(request):
             creator = this_sport
         )
         return redirect("/dashboard")
+
+
+def remove_sport(request, sport_id):
+    sport = Sport.objects.get(id = sport_id)
+    sport.delete()
+    return redirect('/')
