@@ -10,5 +10,6 @@ urlpatterns = [
     path('sports/new', views.new_sport),
     path('create/sport', views.create_sport),
     path('sports/remove/<int:sport_id>', views.remove_sport),
+    path('sports/edit/<int:sport_id', views.edit_sport),
     
 ]

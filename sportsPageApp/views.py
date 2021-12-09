@@ -88,4 +88,12 @@ def create_sport(request):
 def remove_sport(request, sport_id):
     sport = Sport.objects.get(id = sport_id)
     sport.delete()
-    return redirect('/')
+    return redirect('/dashboard')
+
+
+def edit_sport(request, sport_id):
+    context = {
+        "sport": Sport.object.get(id = sport_id),
+        "logged_in_user": User.objects.get(id = request.session['user_id'])
+    }
+    return render(request, "edit_sports.html", context)
