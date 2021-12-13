@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello {{ logged_in_user.first_name }}! Let's Edit your Sport!</h1>
+    <form action="/sports/update/{{ sport.id }}" method="post">
+        {% csrf_token %}
+        <p>
+            Sport:
+            <input type="text" name="sport_name" id="">
+        </p>
+        <p>
+            City:
+            <input type="text" name="city" id="">
+        </p>
+        <p>
+            Day of Meetup:
+            <input type="text" name="day_of_week" id="">
+        </p>
+        <p>
+            Time of Meetup:
+            <input type="time" name="time" id="">
+        </p>
+        <button>Update</button>
+    </form>
+    <a href="/dashboard">Dashboard</a>
+</body>
+</html>
