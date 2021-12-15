@@ -97,3 +97,21 @@ def edit_sport(request, sport_id):
         "logged_in_user": User.objects.get(id = request.session['user_id'])
     }
     return render(request, "edit_sports.html", context)
+
+
+def update_sport(request, sport_id):
+    errors = Sport.objects.sport_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect(f"/sports/edit/{sport_id}")
+    else:
+        sport = Sport.objects.get(id = sport_id)
+        sport.sport_name = request.POST['sport_name'],
+        sport.city = request.POST['city'],
+        sport.day_of_week = request.POST['day_of_week'],
+        sport.time = request.POST['time'],
+        sport.save()
+
+        return redirect('/dashboard')
+
