@@ -115,3 +115,7 @@ def update_sport(request, sport_id):
 
         return redirect('/dashboard')
 
+
+def display_sport(request, sport_id):
+    return
+

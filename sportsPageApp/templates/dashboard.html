@@ -24,7 +24,8 @@
         <tbody>
             {% for sport in logged_in_user.sports.all %}
             <tr>
-                <td>{{ sport.sport_name }}</td>
+                <!-- <td>{{ sport.sport_name }}</td> -->
+                <td><a href="/sports/display/{{ sport.id }}">{{ sport.sport_name }}</a></td>
                 <td>{{ sport.city }}</td>
                 <td>{{ sport.day_of_week }}</td>
                 <td>{{ sport.time }}</td>
