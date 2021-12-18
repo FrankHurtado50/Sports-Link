@@ -12,6 +12,6 @@ urlpatterns = [
     path('sports/remove/<int:sport_id>', views.remove_sport),
     path('sports/edit/<int:sport_id>', views.edit_sport),
     path('sports/update/<int:sport_int>', views.update_sport),
-    path('sports/display/<int:sport_id', views.display_sport),
+    path('sports/display/<int:sport_id>', views.display_sport),
     
 ]

@@ -117,5 +117,9 @@ def update_sport(request, sport_id):
 
 
 def display_sport(request, sport_id):
-    return
+    context = {
+        "sport": Sport.objects.get(id = sport_id),
+        "logged_in_user": User.objects.get(id = request.session['user_id'])
+    }
+    return render(request, "display_sport.html", context)
 
