@@ -77,6 +77,7 @@ def create_sport(request):
         this_sport = User.objects.get(id = request.session['user_id'])
         Sport.objects.create(
             sport_name = request.POST['sport_name'],
+            description = request.POST['description'],
             city = request.POST['city'],
             day_of_week = request.POST['day_of_week'],
             time = request.POST['time'],
@@ -108,6 +109,7 @@ def update_sport(request, sport_id):
     else:
         sport = Sport.objects.get(id = sport_id)
         sport.sport_name = request.POST['sport_name'],
+        sport.description = request.POST['description'],
         sport.city = request.POST['city'],
         sport.day_of_week = request.POST['day_of_week'],
         sport.time = request.POST['time'],

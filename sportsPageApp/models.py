@@ -61,6 +61,7 @@ class User(models.Model):
 
 class Sport(models.Model):
     sport_name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     day_of_week = models.CharField(max_length=255)
     time = models.CharField(max_length=255)
