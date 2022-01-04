@@ -1,22 +1,24 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard_css.css' %}">
 </head>
 <body>
     <h1>Hello {{ logged_in_user.first_name }}!</h1>
     <a href="/logout">Logout </a> |
     <!-- <p>.</p> -->
     <a href="/sports/new">Create a new sport!</a>
-    <p>Your Sports:</p>
+    <p>Sports to join!</p>
+    <p>If you would like to learn more about the sport please click on the title of it</p>
     <table>
         <thead>
             <tr>
                 <th>Sport</th>
-                <th>Description</th>
                 <th>City</th>
                 <th>Day of week</th>
                 <th>Time</th>
@@ -26,7 +28,6 @@
             {% for sport in logged_in_user.sports.all %}
             <tr>
                 <td><a href="/sports/display/{{ sport.id }}">{{ sport.sport_name }}</a></td>
-                <td>{{ sport.description }}</td>
                 <td>{{ sport.city }}</td>
                 <td>{{ sport.day_of_week }}</td>
                 <td>{{ sport.time }}</td>
