@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard_css.css' %}">
 </head>
+<div class="container">
 <body>
     <h1>Hello {{ logged_in_user.first_name }}!</h1>
     <a href="/logout">Logout </a> |
@@ -36,5 +37,6 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
 </body>
 </html>
