@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard_css.css' %}">
 </head>
-<div class="container">
 <body>
-    <h1>ADMIN DASHBOARD</h1>
     <h1>Hello {{ logged_in_user.first_name }}!</h1>
     <a href="/logout">Logout </a> |
     <!-- <p>.</p> -->
@@ -33,11 +29,10 @@
                 <td>{{ sport.city }}</td>
                 <td>{{ sport.day_of_week }}</td>
                 <td>{{ sport.time }}</td>
-                <td><a href="/sports/remove/{{ sport.id }}">Remove</td>
+                <!-- <td><a href="/sports/remove/{{ sport.id }}">Remove</td> -->
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
 </body>
 </html>
