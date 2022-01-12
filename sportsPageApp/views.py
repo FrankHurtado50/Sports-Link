@@ -32,7 +32,11 @@ def register_info(request):
 
 
 def login(request):
+    frank = User.objects.get(email = 'frankhurtado50gmail.com')
     errors = User.objects.login_validator(request.POST)
+    if User.email == frank:
+        return redirect("/dashboard_for_admin")
+        #this is if i log in, so i can deleted peoples posts
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
@@ -51,7 +55,17 @@ def dashboard(request):
         "logged_in_user": User.objects.get(id = request.session['user_id']),
         # add more context
     }
-    return render(request, "dashboard.html", context)
+    return render(request, "dashboard_for_users.html", context)
+
+
+def dashboard_for_admin(request):
+    context = {
+        "logged_in_user": User.objects.get(id = request.session['user_id']),
+    }
+    user = User.objects.get(email = request.POST['email'])
+    request.session['user_id'] = user.id
+    return render(request, '/dashboard_for_admin', context)
+        #return render(request, "dashboard.html", context)
 
 
 def logout(request):
