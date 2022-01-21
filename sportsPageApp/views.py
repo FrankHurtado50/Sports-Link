@@ -53,6 +53,7 @@ def dashboard(request):
         return redirect('/dashboard_for_admin')
     context = {
         "logged_in_user": User.objects.get(id = request.session['user_id']),
+        "allSports": Sport.objects.all(),
         # add more context
     }
     return render(request, "dashboard_for_users.html", context)
