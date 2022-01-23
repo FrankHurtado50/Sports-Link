@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello {{ logged_in_user.first_name }}!</h1>
+    <h1>Hello {{ logged_in_user.first_name }}! Welcome to Sports Link</h1>
     <a href="/logout">Logout </a> |
     <!-- <p>.</p> -->
     <a href="/sports/new">Create a new sport!</a>
@@ -24,6 +24,7 @@
         </thead>
         <tbody>
             {% for sport in logged_in_user.sports.all %}
+            <!-- ^this line is making it so only the user can see the users sports. -->
             <tr>
                 <td><a href="/sports/display/{{ sport.id }}">{{ sport.sport_name }}</a></td>
                 <td>{{ sport.city }}</td>
@@ -34,5 +35,10 @@
             {% endfor %}
         </tbody>
     </table>
+    <select>
+        {% for sport in allSports %}
+            <option>{{ sport.sport_name }}</option>
+        {% endfor %}
+    </select>
 </body>
 </html>

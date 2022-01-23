@@ -45,12 +45,12 @@ def login(request):
 
 
 def dashboard(request):
-    user = User.objects.get(email = request.POST['email'])
-    request.session['user_id'] = user.id
+    #user = User.objects.get(email = request.POST['email'])
+    #request.session['user_id'] = user.id
     if "user_id" not in request.session:
         return redirect("/")
-    if request.session['user_id'] == User.objects.get(email = 'frankhurtado50@gmail.com'):
-        return redirect('/dashboard_for_admin')
+    # if request.session['user_id'] == User.objects.get(email = 'frankhurtado50@gmail.com'):
+    #     return redirect('/dashboard_for_admin')
     context = {
         "logged_in_user": User.objects.get(id = request.session['user_id']),
         "allSports": Sport.objects.all(),
