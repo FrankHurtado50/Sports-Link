@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Manage your posts here!</h1>
+    {% for sport in logged_in_user.sports.all %}
+            <!-- ^this line is making it so only the user can see the users sports. -->
+            <tr>
+                <td><a href="/sports/display/{{ sport.id }}">{{ sport.sport_name }}</a></td>
+                <td>{{ sport.city }}</td>
+                <td>{{ sport.day_of_week }}</td>
+                <td>{{ sport.time }}</td>
+                <td><a href="/sports/remove/{{ sport.id }}">Remove</td>
+            </tr>
+    {% endfor %}
+</body>
+</html>

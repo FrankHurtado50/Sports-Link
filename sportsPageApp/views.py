@@ -59,6 +59,13 @@ def dashboard(request):
     return render(request, "dashboard_for_users.html", context)
 
 
+def users_own_sports(request):
+    context = {
+        "logged_in_user": User.objects.get(id = request.session['user_id']),
+    }
+    return
+
+
 def dashboard_for_admin(request):
     context = {
         "logged_in_user": User.objects.get(id = request.session['user_id']),
