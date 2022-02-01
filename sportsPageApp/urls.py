@@ -13,8 +13,8 @@ urlpatterns = [
     path('create/sport', views.create_sport),
     path('sports/remove/<int:sport_id>', views.remove_sport),
     path('sports/edit/<int:sport_id>', views.edit_sport),
-    path('sports/update/<int:sport_int>', views.update_sport),
+    path('sports/update/<int:sport_id>', views.update_sport),
     path('sports/display/<int:sport_id>', views.display_sport),
-    path('sports/sport_name_search', views.sport_search),
+    path('sports/<str:sport_search>', views.sport_search),
     
 ]

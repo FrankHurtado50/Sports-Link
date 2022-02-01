@@ -73,13 +73,20 @@ def dashboard_for_admin(request):
     # user = User.objects.get(email = request.POST['email'])
     # request.session['user_id'] = user.id
     return render(request, '/dashboard_for_admin', context)
-        #return render(request, "dashboard.html", context)
+    #still a workin progress here, might have to make a new model
 
 
 def logout(request):
     del request.session['user_id']
 
     return redirect("/")
+
+
+def sport_search(request, sport_search):
+    context ={
+        "sport": Sport.objects.get(id = sport_search)
+    }
+    return render(request, "dashboard_for_users.html", context)
 
 
 def new_sport(request):

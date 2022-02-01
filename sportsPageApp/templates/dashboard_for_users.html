@@ -14,6 +14,16 @@
     <a href="/yours_sports">Click here to view your posts</a>
     <p>Sports to join!</p>
     <p>If you would like to learn more about the sport please click on the title of it</p>
+    <form action="/sports/{{ sport.sport_name }}" method="get">
+        <!-- add input type next -->
+    <select name="{{ sport.sport_name }}" id="{{ sport.sport_name }}">
+        {% for sport in allSports %}
+            <option value="{{ sport.sport_name }}">{{ sport.sport_name }}</option>
+            <!-- <input type="text" name="sport_search" id=""> -->
+        {% endfor %}
+    </select>
+    <button>Search</button>
+</form>
     <table>
         <thead>
             <tr>
@@ -24,7 +34,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for sport in logged_in_user.sports.all %}
+            {% for sport in allSports %}
             <tr>
                 <td><a href="/sports/display/{{ sport.id }}">{{ sport.sport_name }}</a></td>
                 <td>{{ sport.city }}</td>
@@ -34,13 +44,6 @@
             {% endfor %}
         </tbody>
     </table>
-    <form action="/sports/sport_name_search" method="post">
-        <!-- add input type next -->
-    <select>
-        {% for sport in allSports %}
-            <option>{{ sport.sport_name }}</option>
-        {% endfor %}
-    </select>
-</form>
+
 </body>
 </html>
