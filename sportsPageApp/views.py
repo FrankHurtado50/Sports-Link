@@ -82,11 +82,17 @@ def logout(request):
     return redirect("/")
 
 
-def sport_search(request, sport_search):
+def sport_search(request, sport_search, self):
+    query = self.request.GET.get('q')
+    object_list = Sport.objects.filter(
+        Q(name__icontains=query) |
+        Q(state__icontains=query)
+    )
     context ={
         "sport": Sport.objects.get(id = sport_search)
     }
     return render(request, "dashboard_for_users.html", context)
+    # this is a test^^^
 
 
 def new_sport(request):
