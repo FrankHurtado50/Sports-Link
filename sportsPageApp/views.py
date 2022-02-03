@@ -1,6 +1,8 @@
 import bcrypt
-from django.shortcuts import render, HttpResponse, redirect
+from django.http import request,HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib import messages
+from django.urls import reverse
 from .models import *
 
 
@@ -153,10 +155,30 @@ def update_sport(request, sport_id):
         return redirect('/dashboard')
 
 
-def display_sport(request, sport_id):
+def display_sport(request, self, sport_id, **kwargs):
+    stuff = get_object_or_404(Sport, id=self.kwargs['sport_id'])
     context = {
         "sport": Sport.objects.get(id = sport_id),
-        "logged_in_user": User.objects.get(id = request.session['user_id'])
+        "logged_in_user": User.objects.get(id = request.session['user_id']),
+        "total_likes":  stuff.total_likes()
     }
     return render(request, "display_sport.html", context)
+
+
+# def LikeView(request, pk):
+#     print(request)
+#     user = User.objects.get(id = request.session['user_id'])
+#     sport = get_object_or_404(Sport, id=request.POST.get('sport_id'))
+#     sport.likes.add(user)
+#     return HttpResponseRedirect(reverse("sports/display", args=[str(pk)]))
+#     return redirect(f'sports/display/{sport_id}')
+
+
+def LikeView(request, sport_id):
+    print(request)
+    user = User.objects.get(id = request.session['user_id'])
+    sport = get_object_or_404(Sport, id=request.POST.get('sport_id'))
+    sport.likes.add(user)
+    #return HttpResponseRedirect(reverse("sports/display", args=[str(pk)]))
+    return redirect(f'/sports/display/{sport_id}')
 

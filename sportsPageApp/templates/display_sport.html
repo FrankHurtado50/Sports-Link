@@ -15,5 +15,11 @@
     <p>Day of Week: {{ sport.day_of_week }}</p>
     <p>Time of Day: {{ sport.time }}</p>
     <p>City its in: {{ sport.city }}</p>
+
+    <form action="/sport/like/{{ sport.id }}" method="POST">
+    
+        {% csrf_token %}
+        <button type="submit", name="sport_id", value="{{ sport.id }}">Attending</button> - {{ total_likes }}
+    </form>
 </body>
 </html>

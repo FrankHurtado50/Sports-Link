@@ -11,7 +11,7 @@
     border-radius: 25px;
 }
 
-h1{
+h1, h2{
     margin-left: 190px;
 }
 
@@ -21,4 +21,14 @@ h1{
 
 #validations{
     color: red;
+}
+
+button{
+    border-radius: 25px;
+    background-color: orangered;
+    margin-left: 190px; 
+}
+
+p{
+    margin-left: 190px; 
 }

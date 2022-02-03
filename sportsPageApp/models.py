@@ -68,7 +68,11 @@ class Sport(models.Model):
     creator = models.ForeignKey(User, related_name="sports", on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add = True)
     update_at = models.DateTimeField(auto_now = True)
+    likes = models.ManyToManyField(User, related_name='sport_posts')
     objects = SportManager()
+
+    def total_likes(self):
+        return self.likes.count()
 
 
 
