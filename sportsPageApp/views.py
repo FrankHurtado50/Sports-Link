@@ -1,8 +1,9 @@
 import bcrypt
-from django.http import request,HttpResponseRedirect
+from django.http import request, HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
+from django.views.generic.detail import DetailView
 from .models import *
 
 
@@ -155,14 +156,30 @@ def update_sport(request, sport_id):
         return redirect('/dashboard')
 
 
-def display_sport(request, self, sport_id, **kwargs):
-    stuff = get_object_or_404(Sport, id=self.kwargs['sport_id'])
+def display_sport(request, sport_id):
+    stuff = Sport.objects.get(id = sport_id)
+    total_likes = stuff.total_likes()
     context = {
         "sport": Sport.objects.get(id = sport_id),
         "logged_in_user": User.objects.get(id = request.session['user_id']),
-        "total_likes":  stuff.total_likes()
+        #"total_likes":  stuff.total_likes()
     }
+    context["total_likes"] = total_likes
     return render(request, "display_sport.html", context)
+
+# class display_sport(DetailView):
+#     model = Sport
+#     template_name = 'display_sport.html'
+#     def something(self,*args, kwargs):
+#         stuff = get_object_or_404(Sport, id=self.kwargs['sport_id'])
+#         total_likes = stuff.total_likes()
+#         context = {
+#             "sport": Sport.objects.get(id = 'sport_id'),
+#             "logged_in_user": User.objects.get(id = request.session['user_id']),
+#             "total_likes":  total_likes
+#         }
+#         # context["total_likes"] = total_likes
+#         return context
 
 
 # def LikeView(request, pk):
@@ -181,4 +198,10 @@ def LikeView(request, sport_id):
     sport.likes.add(user)
     #return HttpResponseRedirect(reverse("sports/display", args=[str(pk)]))
     return redirect(f'/sports/display/{sport_id}')
+
+def users_own_sports(request):
+    context = {
+        "logged_in_user": User.objects.get(id = request.session['user_id']),
+    }
+    return render(request, "users_own_sports.html", context)
 

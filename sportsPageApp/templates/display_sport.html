@@ -19,7 +19,8 @@
     <form action="/sport/like/{{ sport.id }}" method="POST">
     
         {% csrf_token %}
-        <button type="submit", name="sport_id", value="{{ sport.id }}">Attending</button> - {{ total_likes }}
+        <button type="submit", name="sport_id", value="{{ sport.id }}">Attending</button> 
     </form>
+    <p>- {{ total_likes }} Likes</p>
 </body>
 </html>
