@@ -167,28 +167,6 @@ def display_sport(request, sport_id):
     context["total_likes"] = total_likes
     return render(request, "display_sport.html", context)
 
-# class display_sport(DetailView):
-#     model = Sport
-#     template_name = 'display_sport.html'
-#     def something(self,*args, kwargs):
-#         stuff = get_object_or_404(Sport, id=self.kwargs['sport_id'])
-#         total_likes = stuff.total_likes()
-#         context = {
-#             "sport": Sport.objects.get(id = 'sport_id'),
-#             "logged_in_user": User.objects.get(id = request.session['user_id']),
-#             "total_likes":  total_likes
-#         }
-#         # context["total_likes"] = total_likes
-#         return context
-
-
-# def LikeView(request, pk):
-#     print(request)
-#     user = User.objects.get(id = request.session['user_id'])
-#     sport = get_object_or_404(Sport, id=request.POST.get('sport_id'))
-#     sport.likes.add(user)
-#     return HttpResponseRedirect(reverse("sports/display", args=[str(pk)]))
-#     return redirect(f'sports/display/{sport_id}')
 
 
 def LikeView(request, sport_id):
@@ -196,7 +174,6 @@ def LikeView(request, sport_id):
     user = User.objects.get(id = request.session['user_id'])
     sport = get_object_or_404(Sport, id=request.POST.get('sport_id'))
     sport.likes.add(user)
-    #return HttpResponseRedirect(reverse("sports/display", args=[str(pk)]))
     return redirect(f'/sports/display/{sport_id}')
 
 def users_own_sports(request):
