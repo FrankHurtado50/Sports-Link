@@ -1,17 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard_style.css' %}">
 </head>
 <body>
+<div id="container">
     <h1>Hello {{ logged_in_user.first_name }}! Welcome to Sports Link</h1>
-    <a href="/logout">Logout </a> |
+    <a href="/logout" div class="link">Logout </a> 
     <!-- <p>.</p> -->
-    <a href="/sports/new">Create a new sport!</a>
-    <a href="/your_sports">Click here to view your posts</a>
+    <a href="/sports/new" div class="link">Create a new sport!</a>
+    <a href="/your_sports" div class="link">Click here to view your posts</a>
     <p>Sports to join!</p>
     <p>If you would like to learn more about the sport please click on the title of it</p>
     <form action="/sports/{{ sport.sport_name }}" method="get">
@@ -44,6 +47,6 @@
             {% endfor %}
         </tbody>
     </table>
-
+</div>
 </body>
 </html>

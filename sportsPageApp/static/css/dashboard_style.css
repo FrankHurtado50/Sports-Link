@@ -1,0 +1,23 @@
+*{
+    background-color: burlywood;
+}
+
+
+#container{
+    margin: auto;
+    width: 50%;
+    border: 3px solid orangered;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+
+button, select{
+    border-radius: 25px;
+    background-color: orangered;
+    margin-left: 190px; 
+}
+
+p, h1, table, .link{
+    margin-left: 190px; 
+}
