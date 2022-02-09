@@ -11,26 +11,14 @@
     border-radius: 25px;
 }
 
-h1, h2{
-    margin-left: 190px;
+
+p, a , button{
+    margin-left: 250px; 
 }
 
-#reg{
-    margin-bottom: 50px;
-}
-
-#validations{
-    color: red;
-}
-
-button{
+h1{
     margin-left: 190px; 
 }
-
-p{
-    margin-left: 190px; 
-}
-
 
 button, input{
     border-radius: 25px;

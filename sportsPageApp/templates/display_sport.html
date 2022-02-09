@@ -1,26 +1,30 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sport_display_style.css' %}">
 </head>
 <body>
-    <h1>Welcome! See if you would like to join this sport session!</h1>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
-    <h3>Activity: {{ sport.sport_name }}</h3>
-    <p>Description: {{ sport.description }}</p>
-    <p>Day of Week: {{ sport.day_of_week }}</p>
-    <p>Time of Day: {{ sport.time }}</p>
-    <p>City its in: {{ sport.city }}</p>
+    <div id="container">
+        <h1>Welcome! See if you would like to join this sport session!</h1>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+        <h3>Activity: {{ sport.sport_name }}</h3>
+        <p>Description: {{ sport.description }}</p>
+        <p>Day of Week: {{ sport.day_of_week }}</p>
+        <p>Time of Day: {{ sport.time }}</p>
+        <p>City its in: {{ sport.city }}</p>
 
-    <form action="/sport/like/{{ sport.id }}" method="POST">
-    
-        {% csrf_token %}
-        <button type="submit", name="sport_id", value="{{ sport.id }}">Attending</button> 
-    </form>
-    <p>- {{ total_likes }} Likes</p>
+        <form action="/sport/like/{{ sport.id }}" method="POST">
+        
+            {% csrf_token %}
+            <button type="submit", name="sport_id", value="{{ sport.id }}">Attending</button> 
+        </form>
+        <p>{{ total_likes }} Likes</p>
+    </div>
 </body>
 </html>
