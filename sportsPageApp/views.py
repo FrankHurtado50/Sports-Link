@@ -7,7 +7,6 @@ from django.views.generic.detail import DetailView
 from .models import *
 
 
-# Create your views here.
 def index(request):
     return render(request, "reg_page.html")
 
@@ -40,7 +39,6 @@ def login(request):
         for key, value in errors.items():
             messages.error(request, value)
         return redirect("/")
-    #if bcrypt.checkpw(request.POST['password'].encode(), user.password.encode()):
     else:
         user = User.objects.get(email = request.POST['email'])
         request.session['user_id'] = user.id
